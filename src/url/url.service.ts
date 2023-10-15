@@ -11,7 +11,7 @@ export class UrlService {
     constructor(@InjectModel(Urls.name) private urlsModel: Model<UrlsDocument>) {}
 
 
-    async encode(originalUrl: UrlDto, req: any): Promise<any> {
+    async encode(originalUrl: UrlDto, req: any): Promise<ShortenedDto> {
         const encodedString = Base62.encode(Date.now());
         
         const newUrl = await this.urlsModel.create(
@@ -26,10 +26,11 @@ export class UrlService {
         return { shortener: newUrl.shortener};
     }
 
-    async decoded(shortenedUrl: ShortenedDto, req: any): Promise<any> {
+    async decoded(shortenedUrl: ShortenedDto, isRedirect: boolean): Promise<UrlDto> {
         const findUrl = await this.urlsModel.findOne({shortener: shortenedUrl.shortener});
-        if(!findUrl) throw new HttpException('SHORTENER_NOT_FOUND', 404);
+        
+        if(!findUrl && !isRedirect) throw new HttpException('SHORTENER_NOT_FOUND', 404);
 
-        return {url: findUrl.url};
+        return {url: findUrl?.url};
     }
 }

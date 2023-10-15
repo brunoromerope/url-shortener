@@ -24,7 +24,8 @@ npm install
 
 ```
 MONGODB_URI=<your-mongodb-connection-string>
-JWT_SECRET=<your-preferred-port>
+JWT_SECRET=<your-secret>
+PORT=<your-preferred-port>
 ```
 
 ##### 4. Start the server:
@@ -44,6 +45,8 @@ The API should now be running. Access it in your web browser at `http://localhos
 - `/encode` Encodes a URL to a shortened one sending a json with the url key.
 
 - `/decode` Decodes a shortened URL to its original URL by passing the key shortener in a json format.
+
+- `/:shortener` Redirects to the shortened URL
 
 - `/documentation` Swagger documentation.
 
