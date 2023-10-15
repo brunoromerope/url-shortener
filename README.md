@@ -45,6 +45,8 @@ The API should now be running. Access it in your web browser at `http://localhos
 
 - `/decode` Decodes a shortened URL to its original URL by passing the key shortener in a json format.
 
+- `/documentation` Swagger documentation.
+
 
 
 ### License
