@@ -41,7 +41,7 @@ The API should now be running. Access it in your web browser at `http://localhos
 
 - `/login` Login a user with email and password.
 
-- `/encode` Encodes a URL to a shortened one sending the a json with the url key.
+- `/encode` Encodes a URL to a shortened one sending a json with the url key.
 
 - `/decode` Decodes a shortened URL to its original URL by passing the key shortener in a json format.
 
