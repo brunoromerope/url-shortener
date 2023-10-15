@@ -23,14 +23,14 @@ export class LoginService {
         if(!checkPassword) throw new HttpException('PASSWORD_INCORRECT', 403);
 
         const payload = {
-            id: findUser._id,
+            _id: findUser._id,
             email: findUser.email
         }
 
         const token = this.jwtService.sign(payload);
 
         const data = {
-            user: findUser,
+            user: payload,
             token,
         }
 

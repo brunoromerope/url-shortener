@@ -8,8 +8,14 @@ export class Urls {
     @Prop({unique: true})
     shortener: string;
 
-    @Prop()
+    @Prop({ required: true})
     url: string;
+
+    @Prop({ required: true})
+    created_at: Date;
+
+    @Prop({ required: true})
+    created_by: string
 }
 
 export const UrlSchema = SchemaFactory.createForClass(Urls);

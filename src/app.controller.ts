@@ -1,25 +1,28 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, Request } from '@nestjs/common';
 import { UrlService } from './url/url.service';
-import { CreateUrlDto } from './url/dto/create-url.dto';
-import { FindUrlDto } from './url/dto/find-url.dto';
+import { UrlDto } from './url/dto/create-url.dto';
+import { ShortenedDto } from './url/dto/find-url.dto';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('url')
+@ApiBearerAuth()
+@ApiResponse({ status: 401, description: 'Unauthorized'})
 @Controller()
 export class AppController {
   constructor(private readonly urlService: UrlService) {}
 
   @UseGuards(JwtAuthGuard)
   @Post('encode')
-  encode(@Body() urlString: CreateUrlDto): Promise<string> {
-    return this.urlService.encode(urlString);
+  encode(@Body() urlString: UrlDto, @Request() req): Promise<ShortenedDto> {
+    return this.urlService.encode(urlString, req);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post('decode')
-  decode(@Body() encodedString: FindUrlDto): Promise<string> {
-    return this.urlService.decoded(encodedString);
+  @ApiResponse({ status: 404, description: 'SHORTENER_NOT_FOUND'})
+  decode(@Body() encodedString: ShortenedDto, @Request() req): Promise<UrlDto> {
+    return this.urlService.decoded(encodedString, req);
   }
 
 }

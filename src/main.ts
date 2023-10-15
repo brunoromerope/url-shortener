@@ -11,7 +11,6 @@ async function bootstrap() {
     .setTitle('URL-SHORTENER')
     .setDescription('Documentation')
     .setVersion('1.0')
-    .addTag('Url Shortener')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

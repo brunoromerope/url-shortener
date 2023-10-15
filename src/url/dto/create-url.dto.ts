@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-export class CreateUrlDto {
+export class UrlDto {
     @IsNotEmpty()
     url: string;
 }
