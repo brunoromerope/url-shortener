@@ -19,7 +19,7 @@ export class UrlService {
                 shortener: encodedString, 
                 url: originalUrl.url,
                 created_at: new Date(),
-                created_by: req.user.id
+                created_by: req.user._id
             }
         ); 
         
