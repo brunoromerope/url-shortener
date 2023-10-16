@@ -12,7 +12,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('URL-SHORTENER')
-    .setDescription('Documentation')
+    .setDescription('A simple URL shortener API built with NestJS, Mongoose, and MongoDB. The API offers user registration, login, URL encoding (shortening), and decoding.')
     .setVersion('1.0')
     .build();
 
